@@ -44,6 +44,7 @@ export default {
 <style lang="scss" scoped>
     .app-container{
         padding-top: 40px;
+		padding-bottom: 50px;
 		// 隐藏横向轴，使其不再有滚动条
 		overflow-x:hidden;
     }
