@@ -1,48 +1,42 @@
 <template>
   <div>
     <!-- 轮播图区域 -->
-    <mt-swipe :auto="4000">
-      <!-- 在组件中，使用v-for循环的话， 一定要是用key -->
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.img_url" alt="" />
-      </mt-swipe-item>
-    </mt-swipe>
-
+    <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>
     <!-- 九宫格到六宫格的改造工程 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
         <router-link to="/home/newslist">
           <span class="mui-icon mui-icon-home"></span>
           <div class="mui-media-body">新闻资讯</div>
         </router-link>
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+        <router-link to="/home/photolist">
           <span class="mui-icon mui-icon-extra mui-icon-extra-share"
             ><span class="mui-badge">5</span></span
           >
-          <div class="mui-media-body">图片分享</div></a
+          <div class="mui-media-body">图片分享</div></router-link
         >
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+        <router-link to="/home/goodslist">
           <span class="mui-icon mui-icon-chatbubble"></span>
-          <div class="mui-media-body">商品购买</div></a
+          <div class="mui-media-body">商品购买</div></router-link
         >
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
         <a href="#">
           <span class="mui-icon mui-icon-extra mui-icon-extra-order"></span>
           <div class="mui-media-body">留言反馈</div></a
         >
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
         <a href="#">
           <span class="mui-icon mui-icon-extra mui-icon-extra-computer"></span>
           <div class="mui-media-body">视频专区</div></a
         >
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
         <a href="#">
           <span class="mui-icon mui-icon-phone"></span>
           <div class="mui-media-body">联系我们</div></a
@@ -53,6 +47,7 @@
 </template>
 <script>
 import { Toast } from "mint-ui";
+import swiper from '../subcomponents/swiper.vue'
 
 export default {
   data() {
@@ -78,29 +73,13 @@ export default {
         }
       });
     }
+  },
+  components:{
+    swiper
   }
 };
 </script>
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-  margin-bottom: 50px;
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-clip: red;
-    }
-    &:nth-child(2) {
-      background-color: blue;
-    }
-    &:nth-child(3) {
-      background-color: pink;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 .mui-grid-view.mui-grid-9 {
   background-color: #fff;
   border: none;
