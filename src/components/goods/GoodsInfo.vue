@@ -17,13 +17,13 @@
 				</div>
 			</div>
         <!-- 这是商品购买区域 -->
-        <div class="mui-card">
+        <div class="mui-card shopping">
 				<div class="mui-card-header">{{goodsinfo.title}}</div>
 				<div class="mui-card-content">
                     <p class="price">
                         市场价：<del>￥{{goodsinfo.market_price}}</del>&nbsp;&nbsp;销售价：<span class="now_price">￥{{goodsinfo.sell_price}}</span>
                     </p>
-                     <p>购买数量：<numberbox :@getcount="getSlectedCount"></numberbox></p>
+                     <p>购买数量：<numberbox @getcount="getSlectedCount" :max="goodsinfo.stock_quantity"></numberbox></p>
                      <p>
                          <mt-button type="primary" size="small">立即购买</mt-button>
                          <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -145,12 +145,15 @@ export default {
     .goodsinfo-container{
         background-color: #eee;
         overflow: hidden;
+        .shopping{
+            padding: 10px;
+        }
         .now_price{
             color: red;
             font-size: 16px;
             font-weight: bold;
         }
-        .mui-card-footer{
+           .mui-card-footer{
             display: block;
             button{
                 margin: 15px 0;

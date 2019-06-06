@@ -1,6 +1,8 @@
 <template>
+<!-- 问题：我们不知道什么时候拿到 max 值，但是，总归有一刻，会得到一个真正的max值 -->
+<!-- 我们可以 使用watch属性监听，来监听 父组件传递过来的 max 值，不管 watch 会被触发几次，但是，最后一次，肯定是一个合法的 max 数值 -->
     <div>
-    <div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+    <div class="mui-numbox" data-numbox-min='1' :data-numbox-max='max'>
 		<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
 		<input id="test" class="mui-input-numbox" type="number" value="1" @change="countChanged" ref="numbox" />
 		<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
@@ -26,6 +28,14 @@ export default {
             this.$emit('getcount',parseInt(this.$refs.numbox.value))
         }
     },
+    props:["max"],
+    watch:{
+        // 属性监听
+        'max':function(newVal,oldVal){
+            // 使用 JS API 设置 numbox 的最大值
+            ui('.mui-numbox').numbox().setOption('max',newVal);
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
