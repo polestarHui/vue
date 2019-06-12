@@ -6,6 +6,7 @@
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <mt-switch></mt-switch>
+            <!-- <mt-switch v-model="$store.getters.getGoodsSelected[item.id]" @change="selectedChanged(item.id,$store.getters.getGoodsSelected[item.id])"></mt-switch> -->
             <img src="https://avatars3.githubusercontent.com/u/44837485?s=40&v=4">
             <div class="info">
                 <h1>小米手机 双网通</h1>
@@ -36,6 +37,8 @@
           </div>
         </div>
       </div>
+
+      <p>{{$store.getters.getGoodsSelected}}</p>
   </div>
 </template>
 <script>
@@ -66,6 +69,10 @@ export default {
       // 点击删除，把商品从store中根据 传递的 ID 删除，同时，把当期那组件中的goodslist中，对应要删除的那个商品，使用index删除
       this.goodslist.splice(index,1);
       this.$store.commit('removeFormCar',id);
+    },
+    selectedChanged(id,val){
+      // 每当点击开关，把最新的 开关状态，同步到store中
+      this.$store.commit('updateGoodsSelected',{id,selected:val});
     }
   },
     components:{
